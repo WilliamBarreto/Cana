@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+</h:head>
+
+
+<h:body>
+	<h:form>
+		<p:panel id="panel" style="border:0">
+					<p:messages id="msgs" />
+
+					<h:panelGrid columns="3">
+
+						<h:outputLabel value="Nome completo" for="nome" />
+						<p:inputText id="nome" value="#{clienteManagedBean.cliente.nome}"
+							size="50" maxlength="50" required="true" label="Nome">
+							<f:validateLength minimum="2" />
+							<p:ajax update="msgNome" event="keyup" />
+						</p:inputText>
+						<p:message id="msgNome" for="nome" display="icon" />
+
+
+						<h:outputLabel value="CPF" for="cpf" />
+						<p:inputMask id="cpf" value="#{clienteManagedBean.cliente.cpf}"
+							mask="999.999.999-99" size="11" maxlength="11" label="CPF"
+							required="true">
+							<f:validateLength minimum="2" />
+							<p:ajax update="msgCpf" event="keyup" />
+						</p:inputMask>
+						<p:message id="msgCpf" for="cpf" display="icon" />
+
+
+						<h:outputLabel value="Data de Nascimento" />
+						<p:calendar locale="pt"
+							value="#{clienteManagedBean.cliente.dataNasc}" yearRange="c-90:c"
+							navigator="true" effect="slide" id="cal1" pattern="dd/MM/yyyy"
+							required="true" label="Data">
+							<f:validateLength minimum="8" />
+							<p:ajax update="msgCalendario" event="keyup" />
+						</p:calendar>
+						<p:message id="msgCalendario" for="cal1" display="icon" />
+
+						<h:outputLabel value="E-mail" for="email" />
+						<p:inputText id="email"
+							value="#{clienteManagedBean.cliente.email}" size="30"
+							maxlength="30" required="true" label="E-mail">
+							<f:validateRegex
+								pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+						</p:inputText>
+						<p:message id="msgEmail" for="email" display="icon" />
+
+						<h:outputLabel value="Telefone " for="telefone" />
+						<p:inputMask id="telefone"
+							value="#{clienteManagedBean.cliente.telefone}"
+							mask="(99)9999-9999" required="true" label="telefone">
+							<f:validateLength minimum="8" />
+							<p:ajax update="msgTelefone" event="keyup" />
+						</p:inputMask>
+						<p:message id="msgTelefone" for="telefone" display="icon" />
+
+						<h:outputLabel value="Logradouro " for="logradouro" />
+						<p:inputText id="logradouro"
+							value="#{clienteManagedBean.cliente.logradouro}" size="50"
+							maxlength="50" />
+
+						<p:message id="msgLogradouro" for="logradouro" display="icon" />
+
+						<h:outputLabel value="Bairro " for="bairro" />
+						<p:inputText id="bairro"
+							value="#{clienteManagedBean.cliente.bairro}" size="20" />
+						<p:message id="msgBairro" for="bairro" display="icon" />
+
+						<h:outputLabel value="Cidade " for="cidade" />
+						<p:inputText id="cidade"
+							value="#{clienteManagedBean.cliente.cidade}" size="20" />
+						<p:message id="msgCidade" for="cidade" display="icon" />
+
+						<h:outputLabel value="CEP " for="cep" />
+						<p:inputMask id="cep" required="true" mask="99999-999"
+							value="#{clienteManagedBean.cliente.cep}" label="CEP">
+							<f:validateLength minimum="4" />
+							<p:ajax update="msgCep" event="keyup" />
+						</p:inputMask>
+						<p:message id="msgCep" for="cep" display="icon" />
+
+						
+					<p:commandButton value="Salvar" action="#{clienteManagedBean.salvar}" update="panel" />
+						
+					</h:panelGrid>
+				</p:panel>
+	
+	</h:form>
+
+
+
+
+
+
+</h:body>
+</html>
